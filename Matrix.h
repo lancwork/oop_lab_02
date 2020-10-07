@@ -64,15 +64,12 @@ public:
 		int minR = left.rowCount_ < right.rowCount_ ? left.rowCount_ : right.rowCount_;
 		int minC = left.colCount_ < right.colCount_ ? left.colCount_ : right.colCount_;
 
-		string m(right.ToStr());
 		for (int i = 0; i < minR; i++)
 		{
 			for (int j = 0; j < minC; j++)
 			{
 				left.data_[i][j] = op(left.data_[i][j], right.data_[i][j]);
-				string m1(left.ToStr());
 			}
-			string m2(left.ToStr());
 		}
 	}
 
@@ -85,14 +82,38 @@ public:
 		return result;
 	}
 
-	friend const Matrix operator&(const Matrix& left, const Matrix& right)
+	friend const Matrix operator*(const Matrix& left, const Matrix& right)
 	{
 		Matrix result(left);
 
 		Oper(result, right, std::multiplies<int>());
-		
+
 		return result;
 	}
+
+	friend const Matrix operator&(const Matrix& left, const Matrix& right)
+	{
+		if (left.colCount_ != right.rowCount_)
+			throw exception("ѕроизведение не доступно из-за размеров массивов");
+
+		int size(left.colCount_);		
+		Matrix result(left.rowCount_, right.colCount_);
+		string m1(left.ToStr());
+		string m2(right.ToStr());
+		result.Invoke([&](int i, int j, int& v) mutable
+		{
+			int temp(0);
+			for (int k = 0; k < size; k++)
+			{
+				//temp += left[i, k] * right[k, j];
+				temp = temp + left.GetValue(i, k) * right.GetValue(k, j);
+			}
+			v = temp;
+		});
+
+		return result;
+	}
+
 	int operator[] (const int index) const
 	{
 		int i(index / rowCount_);
