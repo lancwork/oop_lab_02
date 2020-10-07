@@ -41,29 +41,29 @@ void main() {
 
 		
 
-		/*Лаб раб №2*/
-		Matrix::ShowMessage("Лаб раб №2");
-		cout << "Введите размеры массива" << endl;
-		int h = getValue("кол-во строк   ");
-		int w = getValue("кол-во столбцов");
+		///*Лаб раб №2*/
+		//Matrix::ShowMessage("Лаб раб №2");
+		//cout << "Введите размеры массива" << endl;
+		//int h = getValue("кол-во строк   ");
+		//int w = getValue("кол-во столбцов");
 
-		Matrix m(h, w);
+		//Matrix m(h, w);
 
-		m.Random(-10,10);
-		m.View();
-		m.f1();
-		Matrix::ShowMessage("функция должна обнулить строку и столбец с минимальным элементом");
-		m.View();
-		m.f2();
-		Matrix::ShowMessage("функция должна в каждой строке массива первый нечётный эл. менять с первым элементом");
-		m.View();
-		//m.GetValue(20, 20);
+		//m.Random(-10,10);
+		//m.View();
+		//m.f1();
+		//Matrix::ShowMessage("функция должна обнулить строку и столбец с минимальным элементом");
+		//m.View();
+		//m.f2();
+		//Matrix::ShowMessage("функция должна в каждой строке массива первый нечётный эл. менять с первым элементом");
+		//m.View();
+		////m.GetValue(20, 20);
 
 		/*Лаб раб №3*/
 		Matrix::ShowMessage("Лаб раб №3");
 
-		Matrix m1(1, 10);
-		Matrix m2(1, 10);
+		/*Matrix m1(3, 10);
+		Matrix m2(3, 10);
 		m1.Random(0, 10);
 		m2.Random(0, 10);
 
@@ -75,13 +75,19 @@ void main() {
 		m2.View();
 		cout << " = " << endl;
 		m3.View();
-		cout << endl << endl;
+		cout << endl << endl;*/
 
-		m1.View();
-		cout << " * " << endl;
-		m2.View();
-		cout << " = " << endl;
+		Matrix m3(2, 4);
+		Matrix m4(4, 3);
+		m3.Random(0, 1);
+		m4.Random(1, 2);
+		Matrix m5(m3 & m4);
+
+		m3.View();
+		cout << " & " << endl;
 		m4.View();
+		cout << " = " << endl;
+		m5.View();
 
 	}
 	catch (exception e)
